@@ -1,19 +1,19 @@
 "use strict";
 
-app.controller("detailController", ["$rootScope", "$scope", "$state", "apiService", function($rootScope, $scope, $state, api) {
+/**
+ * Displays a detailed view of a recipe
+ */
+app.controller("detailController", ["$rootScope", "$scope", "$state", "apiService", "$timeout", function($rootScope, $scope, $state, api, $timeout) {
 
 	$rootScope.page.title = "Recipes";
 
-	$scope.recipe = {
-		id: $state.params.id
-	};
+	$scope.recipe = null;
 
-	api.getRecipe($scope.recipe.id).success(function(data) {
+	api.getRecipe($state.params.id).success(function(data) {
 		$scope.recipe = data;
 	});
 
-	//$rootScope.$on("$stateChangeStart")
-	$scope.$on("destroy", function() {
-
-	})
+	$rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
+		$scope.recipe = null;
+	});
 }]);

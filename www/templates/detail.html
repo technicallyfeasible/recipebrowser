@@ -1,16 +1,17 @@
-﻿<div class="recipe-detail">
+﻿<div class="recipe-detail" ng-show="!!recipe">
 
-	<div class="row">
-		<div class="col col-xs-12 header" ui-sref="recipes">
-			<i class="glyphicon glyphicon-chevron-left"></i>
-			<div class="title">{{recipe.title}}</div>
-		</div>
-	</div>
 	<div class="row">
 		<div class="col col-xs-12 col-md-6 col-lg-4">
 			<img class="picture" ng-src="{{recipe.picture}}"/>
 		</div>
 		<div class="col col-xs-12 col-md-6 col-lg-8">
+			<h4>Description</h4>
+			<div class="description">{{recipe.description}}</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col col-xs-12 col-md-6 col-lg-4">
 			<h4>Ingredients</h4>
 			<div class="ingredients">
 				<table class="table table-striped">
@@ -20,6 +21,10 @@
 					</tr>
 				</table>
 			</div>
+		</div>
+		<div class="col col-xs-12 col-md-6 col-lg-8">
+			<h4>Instructions</h4>
+			<div class="instructions">{{recipe.instructions}}</div>
 		</div>
 	</div>
 

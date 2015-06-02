@@ -15,6 +15,23 @@ html, body {
 	border-top: none !important;
 }
 
+div.table {
+	&.table-striped {
+		> div {
+			white-space: nowrap;
+			overflow: hidden;
+
+			&:nth-of-type(odd) {
+				background-color: #f9f9f9;
+			}
+			> div {
+				padding: 10px;
+				display: inline-block;
+			}
+		}
+	}
+}
+
 .navbar {
 	.navbar-brand img {
 		margin-top: -7px;
@@ -36,61 +53,65 @@ html, body {
 	}
 }
 
-@keyframes item-out-animation {
-	from { opacity: 1; }
-	to { height: 0; }
+.main-view > *:first-child {
+	margin-top: 72px;
+}
+
+.loading {
+	background: url('../img/loading.gif');
+	width: 40px;
+	height: 40px;
 }
 
 .recipes {
+
 	.recipe-item {
 		cursor: pointer;
 		&:hover {
-			background-color: lightcyan;
+			background-color: lightcyan !important;
 		}
 		.thumb {
-			width: 64px;
-			height: 64px;
-			border-radius: 10px;
+			vertical-align: middle;
+			> div {
+				width: 64px;
+				height: 64px;
+				border-radius: 10px;
+			}
 		}
 		.title {
 			vertical-align: middle;
 			overflow: hidden;
-			width: 100%;
 		}
 
 		&.ng-enter, &.ng-move {
 			transition: 0.3s ease-in-out all;
 			opacity: 0;
+			height: 0;
 			&.ng-enter-active,
 			&.ng-move-active {
 				opacity: 1;
+				height: 84px;
 			}
 		}
 		&.ng-leave {
-			animation: 0.3s item-out-animation;
+			transition: 0.3s ease-in-out all;
+			opacity: 1;
+			height: 84px;
+			&.ng-leave-active {
+				opacity: 0;
+				height: 0;
+			}
 		}
 	}
 }
 
+
 .recipe-detail {
-	.header {
-		cursor: pointer;
-		&:hover {
-			background-color: lightcyan;
-		}
-		i {
-			font-size: 24px;
-			vertical-align: middle;
-		}
-		.title {
-			font-size: 24px;
-			display: inline-block;
-			font-weight: 500;
-			overflow: hidden;
-			vertical-align: middle;
-			padding-top: 4px;
-		}
-	}
+	transition: 0.5s ease-in-out all;
+	opacity: 1;
+	max-height: 10000px;
+	overflow: hidden;
+
 	.picture {
 		width: 100%;
 		border-radius: 10px;
@@ -101,7 +122,21 @@ html, body {
 			text-align: right;
 		}
 		.name {
-
 		}
+	}
+
+	.description {
+		white-space: pre-wrap;
+		padding-bottom: 10px;
+	}
+	.instructions {
+		white-space: pre-wrap;
+		padding-bottom: 10px;
+	}
+
+	&.ng-hide {
+		display: block !important;
+		opacity: 0;
+		max-height: 0;
 	}
 }

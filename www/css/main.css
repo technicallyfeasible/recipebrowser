@@ -13,6 +13,15 @@ html, body {
 .table td {
   border-top: none !important; }
 
+div.table.table-striped > div {
+  white-space: nowrap;
+  overflow: hidden; }
+  div.table.table-striped > div:nth-of-type(odd) {
+    background-color: #f9f9f9; }
+  div.table.table-striped > div > div {
+    padding: 10px;
+    display: inline-block; }
+
 .navbar .navbar-brand img {
   margin-top: -7px; }
 .navbar .navbar-form-right {
@@ -28,49 +37,59 @@ html, body {
     margin-bottom: 0;
     vertical-align: middle; }
 
-@keyframes item-out-animation {
-  from {
-    opacity: 1; }
+.main-view > *:first-child {
+  margin-top: 72px; }
 
-  to {
-    height: 0; } }
+.loading {
+  background: url('../img/loading.gif');
+  width: 40px;
+  height: 40px; }
 
 .recipes .recipe-item {
   cursor: pointer; }
   .recipes .recipe-item:hover {
-    background-color: lightcyan; }
+    background-color: lightcyan !important; }
   .recipes .recipe-item .thumb {
-    width: 64px;
-    height: 64px;
-    border-radius: 10px; }
+    vertical-align: middle; }
+    .recipes .recipe-item .thumb > div {
+      width: 64px;
+      height: 64px;
+      border-radius: 10px; }
   .recipes .recipe-item .title {
     vertical-align: middle;
-    overflow: hidden;
-    width: 100%; }
+    overflow: hidden; }
   .recipes .recipe-item.ng-enter, .recipes .recipe-item.ng-move {
     transition: 0.3s ease-in-out all;
-    opacity: 0; }
+    opacity: 0;
+    height: 0; }
     .recipes .recipe-item.ng-enter.ng-enter-active, .recipes .recipe-item.ng-enter.ng-move-active, .recipes .recipe-item.ng-move.ng-enter-active, .recipes .recipe-item.ng-move.ng-move-active {
-      opacity: 1; }
+      opacity: 1;
+      height: 84px; }
   .recipes .recipe-item.ng-leave {
-    animation: 0.3s item-out-animation; }
+    transition: 0.3s ease-in-out all;
+    opacity: 1;
+    height: 84px; }
+    .recipes .recipe-item.ng-leave.ng-leave-active {
+      opacity: 0;
+      height: 0; }
 
-.recipe-detail .header {
-  cursor: pointer; }
-  .recipe-detail .header:hover {
-    background-color: lightcyan; }
-  .recipe-detail .header i {
-    font-size: 24px;
-    vertical-align: middle; }
-  .recipe-detail .header .title {
-    font-size: 24px;
-    display: inline-block;
-    font-weight: 500;
-    overflow: hidden;
-    vertical-align: middle;
-    padding-top: 4px; }
-.recipe-detail .picture {
-  width: 100%;
-  border-radius: 10px; }
-.recipe-detail .ingredient .quantity {
-  text-align: right; }
+.recipe-detail {
+  transition: 0.5s ease-in-out all;
+  opacity: 1;
+  max-height: 10000px;
+  overflow: hidden; }
+  .recipe-detail .picture {
+    width: 100%;
+    border-radius: 10px; }
+  .recipe-detail .ingredient .quantity {
+    text-align: right; }
+  .recipe-detail .description {
+    white-space: pre-wrap;
+    padding-bottom: 10px; }
+  .recipe-detail .instructions {
+    white-space: pre-wrap;
+    padding-bottom: 10px; }
+  .recipe-detail.ng-hide {
+    display: block !important;
+    opacity: 0;
+    max-height: 0; }

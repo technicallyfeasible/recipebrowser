@@ -1,5 +1,8 @@
 "use strict";
 
+/**
+ * Handles service calls to the BigOven API and transformation of the results
+ */
 app.service("apiService", ["$http", function($http) {
 
 	var baseUrl = "http://api.bigoven.com";
@@ -26,6 +29,7 @@ app.service("apiService", ["$http", function($http) {
 				headers: {
 					"Content-Type": "application/json"
 				},
+				cache: true,
 				transformResponse: appendTransform($http.defaults.transformResponse, api.transformRecipes)
 			};
 			// omit text filter if empty
@@ -46,6 +50,7 @@ app.service("apiService", ["$http", function($http) {
 				headers: {
 					"Content-Type": "application/json"
 				},
+				cache: true,
 				transformResponse: appendTransform($http.defaults.transformResponse, api.transformRecipe)
 			};
 			return $http(config);
@@ -75,9 +80,11 @@ app.service("apiService", ["$http", function($http) {
 			var recipe = {
 				id: apiRecipe.RecipeID,
 				title: apiRecipe.Title,
-				thumbnail: apiRecipe.ImageURL120,
+				thumbnail: apiRecipe.ImageURL120 || apiRecipe.ImageURL,
 				picture: apiRecipe.ImageURL,
-				ingredients: (apiRecipe.Ingredients || []).map(api.transformIngredient)
+				ingredients: (apiRecipe.Ingredients || []).map(api.transformIngredient),
+				description: apiRecipe.Description || "",
+				instructions: apiRecipe.Instructions || ""
 			};
 			return recipe;
 		},

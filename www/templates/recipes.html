@@ -1,22 +1,31 @@
 ﻿<div class="recipes">
 	<div class="container">
 
-		<div class="row">
-			<div class="col col-xs-12">
-				<ui-view></ui-view>
+		<div class="row" ng-show="showTotal">
+			<div class="col col-xs-6">
+				<div class="loading" ng-show="loading"></div>
+			</div>
+			<div class="col col-xs-6 text-right">
+				<h4 class="result-count" ng-hide="totalCount < 0">{{totalCount}} recipes</h4>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col col-xs-12">
-				<table class="table table-striped">
-					<tr ng-repeat="item in data track by item.id" class="recipe-item" ui-sref="recipes.detail({id: item.id})">
-						<td>
-							<div class="thumb" ng-attr-style="background: url('{{item.thumbnail}}') no-repeat 50% 50%; background-size: contain"></div>
-						</td>
-						<td class="title"><h4>{{item.title}}</h4></td>
-					</tr>
-				</table>
+				<div class="table table-striped">
+					<div ng-repeat="item in data track by item.id" class="recipe-item" ng-click="select(item.id)">
+						<div class="thumb">
+							<div ng-attr-style="background: url('{{item.thumbnail}}') no-repeat 50% 50%; background-size: contain"></div>
+						</div>
+						<div class="title"><h4>{{item.title}}</h4></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col col-xs-12">
+				<ui-view></ui-view>
 			</div>
 		</div>
 
