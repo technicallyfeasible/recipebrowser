@@ -35,6 +35,25 @@ app.service("apiService", ["$http", function($http) {
 		},
 
 		/**
+		 *
+		 * @param id - id of the recipe to load
+		 * @return promise which is fulfilled with the transformed response data
+		 */
+		getRecipe: function(id) {
+			var config = {
+				url: baseUrl + "/recipe/" + id + "?api_key="+ apiKey,
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				transformResponse: appendTransform($http.defaults.transformResponse, api.transformRecipe)
+			};
+			return $http(config);
+		},
+
+
+
+		/**
 		 * Transform the api response into our own structure
 		 * @param data
 		 * @returns {{total: *, data: *}}
@@ -43,16 +62,40 @@ app.service("apiService", ["$http", function($http) {
 			var result = {
 				total: data.ResultCount
 			};
-			result.data = data.Results.map(function(apiRecipe) {
-				var recipe = {
-					id: apiRecipe.RecipeID,
-					title: apiRecipe.Title,
-					thumbnail: apiRecipe.ImageURL120,
-					picture: apiRecipe.HeroPhotoUrl
-				};
-				return recipe;
-			});
+			result.data = (data.Results || []).map(api.transformRecipe);
 			return result;
+		},
+
+		/**
+		 * Transform the api response into our own structure
+		 * @param apiRecipe
+		 * @returns {{id: *, title: *, thumbnail: *, picture: *}}
+		 */
+		transformRecipe: function(apiRecipe) {
+			var recipe = {
+				id: apiRecipe.RecipeID,
+				title: apiRecipe.Title,
+				thumbnail: apiRecipe.ImageURL120,
+				picture: apiRecipe.ImageURL,
+				ingredients: (apiRecipe.Ingredients || []).map(api.transformIngredient)
+			};
+			return recipe;
+		},
+
+		/**
+		 * Transform the api response into our own structure
+		 * @param apiIngredient
+		 * @returns {{id: *, title: *, thumbnail: *, picture: *}}
+		 */
+		transformIngredient: function(apiIngredient) {
+			var ingredient = {
+				id: apiIngredient.IngredientID,
+				name: apiIngredient.Name,
+				quantity: apiIngredient.MetricQuantity,
+				unit: apiIngredient.MetricUnit
+
+			};
+			return ingredient;
 		}
 	};
 

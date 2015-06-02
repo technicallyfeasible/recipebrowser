@@ -3,8 +3,14 @@
 
 		<div class="row">
 			<div class="col col-xs-12">
+				<ui-view></ui-view>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col col-xs-12">
 				<table class="table table-striped">
-					<tr ng-repeat="item in data" class="recipe-item">
+					<tr ng-repeat="item in data track by item.id" class="recipe-item" ui-sref="recipes.detail({id: item.id})">
 						<td>
 							<div class="thumb" ng-attr-style="background: url('{{item.thumbnail}}') no-repeat 50% 50%; background-size: contain"></div>
 						</td>

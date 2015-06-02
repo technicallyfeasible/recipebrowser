@@ -1,52 +1,76 @@
 /* CSS Here */
-
 html, body {
-	height: 100%;
-}
-.fullheight.container {
-	height: calc(100% - 52px);
-}
-.center-vertical {
-	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
-}
+  height: 100%; }
 
-.navbar-brand img {
-	margin-top: -7px;
-}
-.navbar-form-right {
-	width: auto;
-	padding: 0 15px;
-	border: 0;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	float: right;
-	margin: 8px -15px 8px 0;
-}
-.navbar-form-right .form-group {
-	display: inline-block;
-	margin-bottom: 0;
-	vertical-align: middle;
-}
+.fullheight.container {
+  height: calc(100% - 52px); }
+
+.center-vertical {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%); }
 
 .table td {
-	border-top: none !important;
-}
+  border-top: none !important; }
 
-.recipes {
-}
+.navbar .navbar-brand img {
+  margin-top: -7px; }
+.navbar .navbar-form-right {
+  width: auto;
+  padding: 0 15px;
+  border: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  float: right;
+  margin: 8px -15px 8px 0; }
+  .navbar .navbar-form-right .form-group {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle; }
 
-.recipe-item {
-	cursor: pointer;
-}
+@keyframes item-out-animation {
+  from {
+    opacity: 1; }
 
-.recipe-item .thumb {
-	width: 64px;
-	height: 64px;
-	border-radius: 10px;
-}
-.recipe-item .title {
-	vertical-align: middle;
-	overflow: hidden;
-}
+  to {
+    height: 0; } }
+
+.recipes .recipe-item {
+  cursor: pointer; }
+  .recipes .recipe-item:hover {
+    background-color: lightcyan; }
+  .recipes .recipe-item .thumb {
+    width: 64px;
+    height: 64px;
+    border-radius: 10px; }
+  .recipes .recipe-item .title {
+    vertical-align: middle;
+    overflow: hidden;
+    width: 100%; }
+  .recipes .recipe-item.ng-enter, .recipes .recipe-item.ng-move {
+    transition: 0.3s ease-in-out all;
+    opacity: 0; }
+    .recipes .recipe-item.ng-enter.ng-enter-active, .recipes .recipe-item.ng-enter.ng-move-active, .recipes .recipe-item.ng-move.ng-enter-active, .recipes .recipe-item.ng-move.ng-move-active {
+      opacity: 1; }
+  .recipes .recipe-item.ng-leave {
+    animation: 0.3s item-out-animation; }
+
+.recipe-detail .header {
+  cursor: pointer; }
+  .recipe-detail .header:hover {
+    background-color: lightcyan; }
+  .recipe-detail .header i {
+    font-size: 24px;
+    vertical-align: middle; }
+  .recipe-detail .header .title {
+    font-size: 24px;
+    display: inline-block;
+    font-weight: 500;
+    overflow: hidden;
+    vertical-align: middle;
+    padding-top: 4px; }
+.recipe-detail .picture {
+  width: 100%;
+  border-radius: 10px; }
+.recipe-detail .ingredient .quantity {
+  text-align: right; }

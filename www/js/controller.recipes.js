@@ -7,10 +7,17 @@ app.controller("recipesController", ["$rootScope", "$scope", "$state", "apiServi
 	$scope.totalCount = -1;
 	$scope.data = [];
 
-	api.findRecipes({ text: "", page: 0 })
-		.success(function(result) {
-			$scope.totalCount = result.total;
-			$scope.data = result.data;
-		});
+	var loadRecipes = function(text) {
+		api.findRecipes({text: text, page: 0})
+			.success(function (result) {
+				$scope.totalCount = result.total;
+				$scope.data = result.data;
+			});
+	};
+	loadRecipes($state.params.q);
+
+	$rootScope.$on("searchChanged", function(event, text) {
+		loadRecipes($state.params.q);
+	});
 
 }]);
