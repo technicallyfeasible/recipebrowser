@@ -1,0 +1,39 @@
+/* CSS Here */
+
+html, body {
+	height: 100%;
+}
+.fullheight.container {
+	height: calc(100% - 52px);
+}
+.center-vertical {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.navbar-brand img {
+	margin-top: -7px;
+}
+.navbar-form-right {
+	width: auto;
+	padding: 0 15px;
+	border: 0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	float: right;
+	margin: 8px -15px 8px 0;
+}
+.navbar-form-right .form-group {
+	display: inline-block;
+	margin-bottom: 0;
+	vertical-align: middle;
+}
+
+.recipes {
+
+}
+
+.recipe-detail {
+
+}
