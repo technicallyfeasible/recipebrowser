@@ -6,12 +6,13 @@
 				<div class="loading" ng-show="loading"></div>
 			</div>
 			<div class="col col-xs-6 text-right">
-				<h4 class="result-count" ng-hide="totalCount < 0">{{totalCount}} recipes</h4>
+				<h4 ng-hide="totalCount < 0">{{totalCount}} recipes</h4>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col col-xs-12">
+				<h4 ng-hide="!resultText">{{resultText}}</h4>
 				<div class="table table-striped">
 					<div ng-repeat="item in data track by item.id" class="recipe-item" ng-click="select(item.id)">
 						<div class="thumb">
