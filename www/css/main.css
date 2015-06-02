@@ -30,10 +30,23 @@ html, body {
 	vertical-align: middle;
 }
 
-.recipes {
-
+.table td {
+	border-top: none !important;
 }
 
-.recipe-detail {
+.recipes {
+}
 
+.recipe-item {
+	cursor: pointer;
+}
+
+.recipe-item .thumb {
+	width: 64px;
+	height: 64px;
+	border-radius: 10px;
+}
+.recipe-item .title {
+	vertical-align: middle;
+	overflow: hidden;
 }

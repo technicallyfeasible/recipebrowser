@@ -1,5 +1,18 @@
 ﻿<div class="recipes">
 	<div class="container">
 
+		<div class="row">
+			<div class="col col-xs-12">
+				<table class="table table-striped">
+					<tr ng-repeat="item in data" class="recipe-item">
+						<td>
+							<div class="thumb" ng-attr-style="background: url('{{item.thumbnail}}') no-repeat 50% 50%; background-size: contain"></div>
+						</td>
+						<td class="title"><h4>{{item.title}}</h4></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
 	</div>
 </div>

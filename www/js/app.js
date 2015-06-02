@@ -4,12 +4,12 @@ app.config(["$stateProvider", "$urlRouterProvider", function ($stateProvider, $u
 	$stateProvider.state("recipes", {
 		url: "/recipes",
 		templateUrl: "templates/recipes.html",
-		controller: "recipes"
+		controller: "recipesController"
 	});
 	$stateProvider.state("recipes.detail", {
 		url: "/recipes/:id",
 		templateUrl: "templates/detail.html",
-		controller: "detail"
+		controller: "detailController"
 	});
 	$urlRouterProvider.otherwise("/recipes");
 }]);
